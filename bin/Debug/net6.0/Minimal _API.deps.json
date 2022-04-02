@@ -9,6 +9,7 @@
       "Minimal _API/1.0.0": {
         "dependencies": {
           "Flunt": "2.0.5",
+          "Microsoft.EntityFrameworkCore": "6.0.3",
           "Microsoft.EntityFrameworkCore.Design": "6.0.3",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.3"
         },
