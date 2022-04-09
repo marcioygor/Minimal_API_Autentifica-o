@@ -9,8 +9,11 @@ using NetDevPack.Identity.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using NetDevPack.Identity.Jwt;
 using NetDevPack.Identity.Model;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,11 +31,62 @@ builder.Services.AddJwtConfiguration(builder.Configuration, "AppSettings");
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ExcluirFornecedor",
-        policy => policy.RequireClaim("ExcluirFornecedor")); //adicionando autorização
+        policy => policy.RequireClaim("ExcluirFornecedor")); //apenas usuarios com claims, podem fazer exclusão. Usuario sem claims recebe um 403.
 });
+
+
+//Configuração do Swagger
+
+//http://localhost:5074/Swagger/index.html
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Minimal API Sample",
+        Description = "Developed by Eduardo Pires - Owner @ desenvolvedor.io",
+        Contact = new OpenApiContact { Name = "Eduardo Pires", Email = "contato@eduardopires.net.br" },
+        License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
+    });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Insira o token JWT desta maneira: Bearer {seu token}",
+        Name = "Authorization",
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
+
 
 var app = builder.Build();
 app.UseAuthConfiguration();
+
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 
 //para que a tabela de usuario seja criada é preciso executar a migration:
 

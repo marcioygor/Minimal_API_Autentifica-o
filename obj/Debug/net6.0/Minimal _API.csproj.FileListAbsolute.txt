@@ -64,3 +64,7 @@ C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\bin\Debug\net6.0\M
 C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\bin\Debug\net6.0\NetDevPack.Identity.dll
 C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\obj\Debug\net6.0\Minimal _API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Marcio Ygor\Documents\Aulas_Web\Asp-Net\Minimal _API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
